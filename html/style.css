@@ -1,0 +1,334 @@
+/*Estilos aplicados so website Prototipando...*/
+
+/*Seletor Universal - seleciona todos os elementos da pagina e aplica estilos comuns padronizados*/
+* {
+    margin: 0;
+    /*remove a margem padrão de todos os elementos*/
+    padding: 0;
+    /*remove o padding de todos os elementos*/
+    box-sizing: border-box
+        /*Inclui borads e reenchimentos no calculo da largura e altura dos elementos*/
+}/*Fechamneto do seletor universal*/
+
+body {
+    font-family: Arial, sans-serif;
+    /*Define a fonte da pagina como Arial, com uma alternativa de sans-serif*/
+    background-color: #AA0B0B;
+    /*Define a cor de fundo do body / corpo do html*/
+    color: aliceblue;
+    /*Define a cor do texto com tom suave de branco*/
+}/*Fechamento do body
+
+/*Estilo do cabeçalho*/
+header {
+    background-color: #D1C2C2;
+    ;
+    /*Cor de fundo em hexadecimal*/
+    padding: 20px;
+    text-align: center;
+    /*Alinha o texto do cabeçalho ao centro*/
+    color: rgb(0, 0, 0)
+}/*Fechamento do header*/
+
+/*BOTÃO DO HEADER----------------------------------------------------------------------------------*/
+.botao-login{
+    right: 20px;
+    /*Alinha o botão, com 20 px de distância da borda direita da pagina*/
+    top: 15px;
+    /*Alinha obotão ao topo, com 20 px dedistância da borda superior*/
+    position: absolute;
+    /*Posiciona o botão de forma absoluta com relação ao cabeçalho*/
+    background-color: rgba(255, 0, 0, 0.747);
+    border: 1px solid rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    padding: 10px 20px;
+    /*Define o espaço interno do botão em 10 px (vertical) e 20 px (horizontal)*/
+    border-radius: 5px;
+    /*Arredonda os cantos do botão*/
+    cursor: pointer;
+    /*Define o cursor como um ponteiro ao passar sobre o botão*/
+    transition: background-color 0.3s ease; /* Transição suave para o fundo */
+}
+/*BOTÃO DO HEADER*/
+.botao-home{
+    right: 20px;
+    /*Alinha o botão, com 20 px de distância da borda direita da pagina*/
+    top: 15px;
+    /*Alinha obotão ao topo, com 20 px dedistância da borda superior*/
+    position: absolute;
+    /*Posiciona o botão de forma absoluta com relação ao cabeçalho*/
+    background-color: rgba(255, 0, 0, 0.747);
+    border: 1px solid rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    padding: 10px 20px;
+    /*Define o espaço interno do botão em 10 px (vertical) e 20 px (horizontal)*/
+    border-radius: 5px;
+    /*Arredonda os cantos do botão*/
+    cursor: pointer;
+    /*Define o cursor como um ponteiro ao passar sobre o botão*/
+    transition: background-color 0.3s ease; /* Transição suave para o fundo */
+}
+/*BOTÃO DO HEADER*/
+.botao-cadastro{
+    right: 100px;
+    /*Alinha o botão, com 20 px de distância da borda direita da pagina*/
+    top: 15px;
+    /*Alinha obotão ao topo, com 20 px dedistância da borda superior*/
+    position: absolute;
+    /*Posiciona o botão de forma absoluta com relação ao cabeçalho*/
+    background-color: rgba(255, 0, 0, 0.747);
+    border: 1px solid rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    padding: 10px 20px;
+    /*Define o espaço interno do botão em 10 px (vertical) e 20 px (horizontal)*/
+    border-radius: 5px;
+    /*Arredonda os cantos do botão*/
+    cursor: pointer;
+    /*Define o cursor como um ponteiro ao passar sobre o botão*/
+    transition: background-color 0.3s ease; /* Transição suave para o fundo */
+}
+/*BOTÃO DO HEADER ---------------------------------------------------------------------------------------*/
+
+header button:hover{
+    background-color: #978787; /* Muda a cor de fundo ao hover */
+}
+
+header h3 {
+    /*Remove a margin e o padding padrão do h3 dentro do header*/
+    margin: 0;
+    padding: 0;
+}/*Fechamento header h3*/
+
+main {
+    padding: 40px;
+    text-align: center;
+}/*Fechamento main*/
+
+main img {
+    max-width: 200px;
+    /*Define a largura maxima das imagens dentro da main como 150px*/
+}/*Fechamento main img*/
+
+section {
+    margin: 20px 0;
+    /*Define a margem superior e inferior das seções como 20 px e 0 para as laterais*/
+}/*Fechamento section*/
+
+/*Estilo do rodapé / footer*/
+footer {
+    font-size: 18px;
+    background-color: #D1C2C2;
+    /*Cor de fundo em hexadecimal*/
+    color: rgb(0, 0, 0);
+    padding: 20px;
+    left: 0;
+    text-align: center;
+    /*Alinha o texto do rodapé ao centro*/
+    bottom: 0;
+    /*Alinha o rodapé abaixo da pagina*/
+    position: absolute;
+    /*Posiciona o radapé de forma absoluta em relação ao body*/
+    width: 100%;
+    /*Define a largura ao rodapé como 100% da janela de vizualização*/
+    position: absolute;
+}/*Fechamento do footer*/
+
+/*OLHA O HOME AEEEEEEEEEEEWWW*/
+.home-bloco{
+    font-size: 10px;
+    /*ASDASDASDASDAS*/
+    display: inline-block;
+    /* Permite que o background seja aplicado apenas ao texto */
+    background-color: white; 
+    /* Cor do retângulo (ajuste conforme necessário) */
+    padding: 10px 30px;
+    /* Espaçamento interno para criar o efeito de retângulo */
+    border-radius: 5px;
+    /* Opcional: Deixa os cantos arredondados */
+    color: #000;
+    /* Cor do texto */
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
+    /*Adiciona sombra para destacar o retângulo */
+    margin: 0px;
+}/*Fechamento do home_text*/
+
+/*LOGIN COMEÇA AQUI----------------------------------------------------------------------------------*/
+.login img{
+    max-width: 300px;
+    /*Define a largura maxima da imagem*/
+}
+
+.login-bloco{
+    color: #000;
+    font-size: 20px;
+    max-width: 300px;
+    height: 250px;
+    /* Largura do retângulo */
+    margin: 30px auto;
+    /* Cent5aliza o retângulo horizontalmente e cria um espaço superior */
+    padding: 15px;
+    /* Espaçamento interno */
+    background-color: #ffffff;
+    /* Cor de fundo do retângulo */
+    border-radius: 10px;
+    /* Arredonda os cantos do retângulo */
+    text-align: center;
+    /* Centraliza o texto dentro do retângulo */
+    position: relative; /* Permite que o botão seja posicionado dentro do retângulo */
+}
+
+.login-bloco input{
+    max-width: 80%;
+    /* Os campos de input ocupam toda a largura do retângulo */
+    padding: 10px;
+    /* Espaçamento interno nos campos de input */
+    margin-bottom: 10px;
+    /* Espaço entre os campos de input */
+    border: 1px solid #000000;
+    /* Borda dos campos de input */
+    border-radius: 5px;
+    /* Arredonda os cantos dos campos de input */
+}
+
+.login-bloco button{
+    font-size: 12px;
+    width: 40%;
+    /* O botão ocupa toda a largura do retângulo */
+    padding: 10px;
+    /* Espaçamento interno no botão */
+    background-color: red;
+    /* Cor de fundo do botão */
+    color: white;
+    /* Cor do texto do botão */
+    border: none;
+    /* Remove a borda padrão do botão */
+    border-radius: 5px;
+    /* Arredonda os cantos do botão */
+    cursor: pointer;
+    /* Muda o cursor ao passar por cima do botão */
+    position: absolute; /* Posiciona o botão dentro do retângulo */
+    bottom: 20px; /* Desce o botão 20px do fundo */
+    left: 85px;
+}
+
+.login-bloco button:hover { /*Pequeno efeito de transição*/
+    background-color: #978787;
+    /* Muda a cor de fundo ao passar o mouse sobre o botão */
+    transition: background-color 0.3s ease; /* Adiciona uma transição suave ao mudar a cor */
+}
+
+
+/*BOTAO DE CADASTRO NO LOGIN*/
+.red-cadastro {
+    display: inline-block; /* Faz o link parecer um botão */
+    padding: 1px 3px; /* Adiciona espaço interno ao botão */
+    background-color: white; /* Cor de fundo */
+    color: red; /* Cor do texto */
+    text-decoration: none; /* Remove o sublinhado do link */
+    border-radius: 3px; /* Arredonda os cantos */
+    transition: background-color 0.3s ease; /* Adiciona uma transição suave ao mudar a cor */
+  }
+  
+.red-cadastro:hover {
+    background-color: rgba(255, 0, 0, 0.466); /* Muda a cor do botão quando o mouse passa por cima */
+    transition: background-color 0.3s ease; /* Adiciona uma transição suave ao mudar a cor */
+}
+
+.botaoCadastro{
+    font-size: 15px; /*tamanho do texto geral do redirecionamento para o cadastro*/
+}/*FIM DA ESTILIZAÇÃO DO BOTAO DE CADASTRO NO LOGIN*/
+
+/*COMEÇO DA ESTILIZAÇÃO DA PAGINA DE CADASTRO--------------------------------------------------------------------------------------*/
+.cadastro-bloco {
+    font-size: 20px;
+    background-color: white; /* Fundo branco do bloco */
+    padding: 15px; /* Espaçamento interno */
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ao redor do bloco */
+    max-width: 300px; /* Largura fixa do bloco */
+    height: 480px;
+    text-align: center; /* Alinha o texto ao centro */
+    position: relative;
+    margin: 35px auto;
+}
+
+/* Estilos para o logotipo (caso fosse uma imagem) */
+.cadastro-bloco img {
+    width: 250px; /* Tamanho da imagem */
+    display: block; /* Garante que a imagem seja tratada como um bloco */
+    margin: 5px auto -35px auto; /* Centraliza a imagem horizontalmente e organiza o espaço abaixo dela */
+}
+
+/* Estilos gerais para o formulário */
+.cadastro-bloco form {
+    display: flex; /* Layout flexível para os inputs */
+    flex-direction: column; /* Organiza os inputs em coluna */
+    gap: 15px; /* Espaçamento entre os inputs */
+}
+
+/* Estilos para os campos de input (nome, CPF, etc.) */
+.cadastro-bloco input {
+    padding: 10px; /* Espaçamento interno dos campos */
+    font-size: 14px; /* Tamanho do texto nos inputs */
+    border: 1px solid black; /* Borda cinza clara */
+    border-radius: 5px; /* Bordas arredondadas */
+}
+
+/* Estilo para quando o input está em foco (selecionado) */
+.cadastro-bloco input:focus {
+    outline: none; /* Remove o contorno padrão */
+    border-color: #c8102e; /* Muda a cor da borda quando selecionado */
+}
+
+/* Estilo para a área de login */
+.cadastro-bloco .login {
+    font-size: 12px; /* Tamanho menor do texto */
+}
+
+/* Estilo para o link "Entre aqui!" */
+.cadastro-bloco .login a {
+    color: #c8102e; /* Cor vermelha para o link */
+    text-decoration: none; /* Remove o sublinhado padrão */
+}
+
+/* Estilo ao passar o mouse sobre o link */
+.cadastro-bloco .login a:hover {
+    text-decoration: underline; /* Adiciona sublinhado ao hover */
+}
+
+/* Estilos para o botão de "Cadastre-se" */
+.cadastro-bloco button {
+    background-color: red; /* Cor de fundo vermelha do botão */
+    color: white; /* Texto branco */
+    padding: 10px; /* Espaçamento interno do botão */
+    border: none; /* Remove a borda padrão */
+    border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer; /* Aparece como um botão clicável */
+    font-size: 16px; /* Tamanho do texto do botão */
+    width: 160px;
+    margin: 0px auto 0px auto;
+    transition: background-color 0.3s ease; /* Transição suave para o fundo */
+}
+/* Efeito ao passar o mouse sobre o botão */
+.cadastro-bloco button:hover {
+    background-color: #978787; /* Muda a cor de fundo ao hover */
+}
+
+.red-login{
+    font-size: 12px;
+    color: black;
+}
+
+.botao-red-login{
+    color: red;
+    cursor: pointer;
+    background-color: white;
+    transition: background-color 0.3s ease; /* Transição suave para o fundo */
+    border: none;
+    border-radius: 3px;
+}
+
+.botao-red-login:hover{
+    background-color: rgba(255, 0, 0, 0.466); /* Muda a cor do botão quando o mouse passa por cima */
+    color: red;
+}

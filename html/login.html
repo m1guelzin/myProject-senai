@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <!--Incluindo o arquivo de estilização-->
+     <link rel="stylesheet" href="style.css"/>
+  </head>
+  <body>
+    <!--Tag semântica de cabeçalho-->
+    <header>
+        <h3>Pagina Login</h3>
+        <button onclick="window.location.href='home.html'" class="botao-home">Home</button>
+    </header>
+    <!--Tag semântica para organização do conteúdo do site-->
+    <main>
+        <!--Primeira seção do conteúdo-->
+        <section class="login-bloco">
+            <form>
+             <img src="senaisplogo.png"alt="Logo SENAI SP"/><br>
+             <input type="text" placeholder="CPF" required><br>
+             <input type = "password" placeholder = "Senha" required><br>
+             <div class="botaoCadastro">
+              <p>Não tem conta? <a href="cadastro.html" class="red-cadastro">Cadastre-se!</a></p>
+            </div>
+             <button type = "submit">Entrar</button><br>
+            </form>
+        </section>
+        <footer>
+            <p>SENAI Franca-SP</p>
+        </footer>
+    </main>
+  </body>
+</html>
