@@ -14,45 +14,71 @@ module.exports = class userController {
     } else if (!email.includes("@")) {
       return res.status(400).json({ error: "Email inválido. Deve conter @" });
     } else {
-      // Construção da query INSERT
-      const query = `INSERT INTO usuario (cpf, nome, telefone, email, senha) VALUES(
-    '${cpf}',
-    '${nome}',
-    '${telefone}',
-    '${email}',
-    '${senha}')`;
-      // Executando a query criada
+      // Verificar se o CPF já está vinculado a outro usuário
+      const queryCPF = `SELECT * FROM usuario WHERE cpf = '${cpf}'`;
+
       try {
-        connect.query(query, function (err) {
+        // Executando a query para verificar o CPF
+        connect.query(queryCPF, function (err, results) {
           if (err) {
-            console.log(err);
-            console.log(err.code);
-            if (err.code === "ER_DUP_ENTRY") {
-              return res
-                .status(400)
-                .json({ error: "O Email ja está vinculado a outro usuário" });
-            } else {
-              return res
-                .status(500)
-                .json({ error: "Erro interno do servidor" });
-            }
-          } else {
+            console.error(err);
+            return res.status(500).json({ error: "Erro interno do servidor" });
+          }
+          if (results.length > 0) {
+            //Resposta para o usuario de cpf ja cadastrado
             return res
-              .status(201)
-              .json({ message: "Usuário cadastrado com sucesso" });
+              .status(400)
+              .json({ error: "O CPF já está vinculado a outro usuário" });
+          } else {
+            // Se o CPF não estiver vinculado, verifica o email
+            const queryEmail = `SELECT * FROM usuario WHERE email = '${email}'`;
+
+            connect.query(queryEmail, function (err, results) {
+              if (err) {
+                console.error(err);
+                return res.status(500).json({ error: "Erro interno do servidor" });
+              }
+              if (results.length > 0) {
+                //Resposta para o usuario de email ja cadastrado
+                return res
+                  .status(400)
+                  .json({ error: "O Email já está vinculado a outro usuário" });
+              } else {
+                // Se CPF e email não estão vinculados, insere o novo usuário
+                const queryInsert = `INSERT INTO usuario (cpf, nome, telefone, email, senha) VALUES (
+                  '${cpf}',
+                  '${nome}',
+                  '${telefone}',
+                  '${email}',
+                  '${senha}'
+                )`;
+                connect.query(queryInsert, function (err) {
+                  if (err) {
+                    console.error(err);
+                    return res
+                      .status(500)
+                      .json({ error: "Erro ao cadastrar usuário" });
+                  }
+                  return res
+                    .status(201)
+                    .json({ message: "Usuário cadastrado com sucesso" });
+                });
+              }
+            });
           }
         });
-      } catch (error) {
+      }// Fechamento do Try
+      catch (error) {
         console.error(error);
         res.status(500).json({ error: "Erro interno do servidor" });
-      }
+      }// Fechamento do catch
     }
   }
 
   static async getAllUsers(req, res) {
-    const query = `SELECT * FROM usuario`;
+    const queryGet = `SELECT * FROM usuario`;
     try {
-      connect.query(query, function (err, results) {
+      connect.query(queryGet, function (err, results) {
         if (err) {
           console.error(err);
           return req.status(500).json({ error: "Erro interno do Servidor" });
@@ -61,10 +87,10 @@ module.exports = class userController {
           .status(200)
           .json({ message: "Lista de Usuários", users: results });
       });
-    } 
+    }
     catch (error) {
       console.error("Erro ao executar consulta:", error)
-      return res.status(500).json({error: "Erro interno do Servidor"})
+      return res.status(500).json({ error: "Erro interno do Servidor" })
     }
   }
 
@@ -78,50 +104,50 @@ module.exports = class userController {
         .status(400)
         .json({ error: "Todos os campos devem ser preenchidos" });
     }
-    const query = `UPDATE usuario SET cpf=?, nome=?, telefone=?, email=?, senha=? WHERE id_usuario = ?`;
+    const queryUpdate = `UPDATE usuario SET cpf=?, nome=?, telefone=?, email=?, senha=? WHERE id_usuario = ?`;
     const values = [cpf, nome, telefone, email, senha];
 
-    try{
-      connect.query(query, values, function(err, results){
-        if(err){
-          if (err.code === "ER_DUP_ENTRY"){
-            return res.status(400).json({error: "Email já cadastrado por outro usuário"});
-          } else{
+    try {
+      connect.query(queryUpdate, values, function (err, results) {
+        if (err) {
+          if (err.code === "ER_DUP_ENTRY") {
+            return res.status(400).json({ error: "Email já cadastrado por outro usuário" });
+          } else {
             console.error(err);
-            res.status(500).json({error: "Erro interno do Servidor"})
+            res.status(500).json({ error: "Erro interno do Servidor" })
           }
         }
-        if(results.affectedRows === 0){
-          return res.status(404).json({message: "Usuário não encontrado"});
+        if (results.affectedRows === 0) {
+          return res.status(404).json({ message: "Usuário não encontrado" });
         }
-        return res.status(200).json({message: "Usuário atualizado com sucesso"});
+        return res.status(200).json({ message: "Usuário atualizado com sucesso" });
       });
-    }catch(error){
+    } catch (error) {
       console.error("Erro ao executar consulta", error);
-      return res.status(500).json({error: "Erro interno do Servidor"});
+      return res.status(500).json({ error: "Erro interno do Servidor" });
     }
   }
 
   static async deleteUser(req, res) {
     // Obtem o parametro 'id' da requisição, que é o cpf do user a ser deletado
     const userId = req.params.id;
-    const query = `DELETE FROM usuario WHERE id_usuario=?`;
+    const queryDelete = `DELETE FROM usuario WHERE id_usuario=?`;
     const values = [userId];
 
-    try{
-      connect.query(query,values,function(err,results){
-        if(err){
+    try {
+      connect.query(queryDelete, values, function (err, results) {
+        if (err) {
           console.error(err);
-          return res.status(500).json({error: "Erro interno no servidor"});
+          return res.status(500).json({ error: "Erro interno no servidor" });
         }
-        if(results.affectedRows === 0){
-          return res.status(404).json({error: "Usuário não encontrado"});
+        if (results.affectedRows === 0) {
+          return res.status(404).json({ error: "Usuário não encontrado" });
         }
-        return res.status(200).json({message:"Usuário excluido com sucesso"});
+        return res.status(200).json({ message: "Usuário excluido com sucesso" });
       });
-    }catch(error){
+    } catch (error) {
       console.error(err);
-      return res.status(500).json({error: "Erro interno do servidor"});
+      return res.status(500).json({ error: "Erro interno do servidor" });
     }
   }
 };

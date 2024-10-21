@@ -1,5 +1,8 @@
 //Importa o modulo Express
 const express = require("express");
+const cors = require("cors");
+const testConnect = require('./db/testConnect');
+
 
 //Define uma classe para organizar a logica da aplicação
 class AppController {
@@ -10,11 +13,12 @@ class AppController {
     this.middlewares();
     //Chama o metodo routes para definir as rotas da Api
     this.routes();
-
+    testConnect();
   }
   middlewares() {
     //Permitir que a aplicação receba dados em formato JSON nas requisições
     this.express.use(express.json());
+    this.express.use(cors());
   }
 
   //Define as rotas da nossa API
