@@ -249,7 +249,7 @@ footer {
     height: 480px;
     text-align: center; /* Alinha o texto ao centro */
     position: relative;
-    margin: 35px auto;
+    margin: 15px auto;
 }
 
 /* Estilos para o logotipo (caso fosse uma imagem) */
@@ -263,7 +263,7 @@ footer {
 .cadastro-bloco form {
     display: flex; /* Layout flexível para os inputs */
     flex-direction: column; /* Organiza os inputs em coluna */
-    gap: 15px; /* Espaçamento entre os inputs */
+    gap: 12px; /* Espaçamento entre os inputs */
 }
 
 /* Estilos para os campos de input (nome, CPF, etc.) */
@@ -297,7 +297,7 @@ footer {
 }
 
 /* Estilos para o botão de "Cadastre-se" */
-.cadastro-bloco button {
+.botao-cadastrar {
     background-color: red; /* Cor de fundo vermelha do botão */
     color: white; /* Texto branco */
     padding: 10px; /* Espaçamento interno do botão */
@@ -310,7 +310,7 @@ footer {
     transition: background-color 0.3s ease; /* Transição suave para o fundo */
 }
 /* Efeito ao passar o mouse sobre o botão */
-.cadastro-bloco button:hover {
+.botao-cadastrar:hover {
     background-color: #978787; /* Muda a cor de fundo ao hover */
 }
 

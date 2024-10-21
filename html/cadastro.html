@@ -13,20 +13,33 @@
     </header>
     <div class="cadastro-bloco">
         <div class="formulario-cadastro">
-            <form>
+            <form id="formulario-registro">
+                <!--Imagem do formulario-->
                 <img src="senaisplogo.png"alt="Logo SENAI SP"/><br>
-                <input type="text" placeholder="Nome" required>
-                <input type="text" placeholder="CPF" required>
-                <input type="tel" placeholder="Número de telefone" required>
-                <input type="email" placeholder="Email" required>
-                <input type="password" placeholder="Senha" required>
+                <!--Entrada do nome-->
+                <label for="nome"></label>
+                <input type="text" id="nome" placeholder="Nome" name="nome" required>
+                <!--Entrada do CPF-->
+                <label for="cpf"></label>
+                <input type="text" id="cpf" placeholder="CPF" name="cpf" required>
+                <!--Entrada do telefone-->
+                <label for="telefone"></label>
+                <input type="tel" id="telefone" placeholder="Número de telefone" name="telefone" required>
+                <!--Entrada do email-->
+                <label for="email"></label>
+                <input type="email" id="email" placeholder="Email" name="email" required>
+                <!--Entrada da senha-->
+                <label for="senha"></label>
+                <input type="senha" id="senha" placeholder="Senha" name="senha" required>
+
                 <p class="red-login">Já tem uma Conta? <a href="login.html" class="botao-red-login">Entre aqui!</a></p>
-                <button type="submit">Cadastre-se</button>
+                <input class="botao-cadastrar" type="submit" value="Cadastrar">
             </form>
         </div>
     </div>
     <footer>
         <p>SENAI Franca-SP</p>
         </footer>
+        <script src="app.js"></script>
 </body>
 </html>
