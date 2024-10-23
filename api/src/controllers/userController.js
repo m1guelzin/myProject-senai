@@ -150,4 +150,53 @@ module.exports = class userController {
       return res.status(500).json({ error: "Erro interno do servidor" });
     }
   }
+  
+  //Inicio das condição de Login ---------------------------------------
+  static async loginUser(req, res) {
+    const { cpf, senha } = req.body;
+
+    // Validações básicas
+    if (!cpf || !senha) {
+      return res.status(400).json({ error: "CPF e senha são obrigatórios" });
+    } else if (isNaN(cpf) || cpf.length !== 11) {
+      return res.status(400).json({
+        error: "CPF inválido. Deve conter exatamente 11 dígitos numéricos",
+      });
+    }
+
+    // Query para verificar se o usuário existe com o CPF fornecido
+    const queryLogin = `SELECT * FROM usuario WHERE cpf = '${cpf}'`;
+
+    try {
+      // Executando a query
+      connect.query(queryLogin, function (err, results) {
+        if (err) {
+          console.error(err);
+          return res.status(500).json({ error: "Erro interno do servidor" });
+        }
+        if (results.length === 0) {
+          // CPF não encontrado no banco de dados
+          return res.status(404).json({ error: "Usuário não encontrado" });
+        }
+
+        const user = results[0];
+
+        // Verificação da senha
+        if (user.senha !== senha) {
+          return res.status(401).json({ error: "Senha incorreta" });
+        }
+
+        // Se o CPF e a senha estiverem corretos, login bem-sucedido
+        return res.status(200).json({
+          message: "Login bem-sucedido",
+          cpf: user.cpf,
+          nome: user.nome,
+        });
+      });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: "Erro interno do servidor" });
+    }
+  }
 };
+

@@ -1,7 +1,7 @@
 //Acessa o objeto "Documento" que representa a pagina html
 //Seleciona o elemento com o id indicado do forumalario
-document
-  .getElementById("formulario-registro")
+document.addEventListener("DOMContentLoaded", function(){
+document.getElementById("formulario-registro")
   
   //Adiciona o ouvinte de evento (submit) para capturar o envio do formulario
   .addEventListener("submit", function (event) {
@@ -49,6 +49,7 @@ document
 
         //Reseta os campos do formulario após o sucesso do cadastro
         document.getElementById("formulario-registro").reset(); 
+        window.location.href = "login.html";
       })
       .catch((error) => {
         //Captura qualquer erro que ocorra durante o processo de requisição / resposta
@@ -58,3 +59,51 @@ document
         console.error("Erro:", error.message);
       });
   });
+})
+
+  //Formulario de Login ------------------------------------------------------------------------------
+  document.addEventListener("DOMContentLoaded", function(){
+  // Acessa o objeto "Documento" que representa a página HTML
+document
+.getElementById("login-form")
+// Adiciona o ouvinte de evento (submit) para capturar o envio do formulário
+.addEventListener("submit", function (event) {
+  // Previna o comportamento padrão do formulário
+  event.preventDefault();
+
+  // Captura os valores dos campos do formulário
+  const cpf = document.getElementById("cpf").value;
+  const senha = document.getElementById("senha").value;
+
+  // Requisição HTTP para o endpoint de login
+  fetch("http://localhost:3000/project-senai/api/v1/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ cpf, senha }),
+  })
+    .then((response) => {
+      // Tratamento da resposta do servidor / API
+      if (response.ok) {
+        return response.json();
+      }
+      // Convertendo o erro em formato JSON
+      return response.json().then((err) => {
+        throw new Error(err.error);
+      });
+    })
+    .then((data) => {
+      // Executa a resposta de sucesso
+      alert(data.message);
+      console.log("Usuário Autenticado");
+      // Redireciona para a página inicial após o login bem-sucedido
+      window.location.href = "home.html";
+    })
+    .catch((error) => {
+      // Captura qualquer erro que ocorra durante o processo de requisição / resposta
+      alert("Erro no login: " + error.message);
+      console.error("Erro:", error.message);
+    });
+});
+})
