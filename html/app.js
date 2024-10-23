@@ -98,7 +98,7 @@ document
       alert(data.message);
       console.log("Usuário Autenticado");
       // Redireciona para a página inicial após o login bem-sucedido
-      window.location.href = "home.html";
+      window.location.href = "inicialPage.html";
     })
     .catch((error) => {
       // Captura qualquer erro que ocorra durante o processo de requisição / resposta
