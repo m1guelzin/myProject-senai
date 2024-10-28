@@ -116,11 +116,11 @@ section {
 
 /*Estilo do rodapé / footer*/
 footer {
-    font-size: 18px;
+    font-size: 16px;
     background-color: #D1C2C2;
     /*Cor de fundo em hexadecimal*/
     color: rgb(0, 0, 0);
-    padding: 20px;
+    padding: 15px;
     left: 0;
     text-align: center;
     /*Alinha o texto do rodapé ao centro*/
@@ -238,7 +238,7 @@ footer {
     font-size: 15px; /*tamanho do texto geral do redirecionamento para o cadastro*/
 }/*FIM DA ESTILIZAÇÃO DO BOTAO DE CADASTRO NO LOGIN*/
 
-/*COMEÇO DA ESTILIZAÇÃO DA PAGINA DE CADASTRO--------------------------------------------------------------------------------------*/
+/*COMEÇO DA ESTILIZAÇÃO DA PAGINA DE CADASTRO-------------------------------------------------------------------------------------------*/
 .cadastro-bloco {
     font-size: 20px;
     background-color: white; /* Fundo branco do bloco */
@@ -372,7 +372,7 @@ footer {
     transition: background-color 0.3s ease; /* Transição suave para o fundo */
 }
 
-/*ESTILIZAÇÃO DA ABA DE PERFIL ------------------------------------------------------------------*/
+/*ESTILIZAÇÃO DA ABA DE PERFIL ---------------------------------------------------------------------------------------*/
 header img{
     max-width: 250px;
     height: 50px;
@@ -419,29 +419,32 @@ header img{
 }
 
 .header-perfil{
-    gap: 0px;
+    height: 75px;
 }
 
 html, body {
-  overflow: hidden;
-  height: 100%;
-}
-
+    overflow: hidden;
+    height: 100%;
+  }
+  
 
 .perfil-container {
     background-color: white;
     border-radius: 10px;
-    padding: 15px;
+    padding: 10px;
     max-width: 600px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin: 100px auto;
+    margin: auto;
   }
   
   .perfil-container h2 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 20px;
+    background-color: rgba(255, 0, 0, 0.836);
+    max-width: auto;
+    height: 30px;
+    color: white;
+    margin-bottom: 15px;
   }
+
   
   /* Estilização do formulário */
   .perfil-form {
