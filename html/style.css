@@ -398,7 +398,7 @@ header img{
     margin: 13px auto;
 }
 
-.botao-voltar{
+.botao-salas{
     margin: 13px auto;
     right: 150px;
     /*Alinha o botão, com 20 px de distância da borda direita da pagina*/
@@ -476,3 +476,146 @@ html, body {
     overflow: hidden;
     height: 100%;
 }
+
+/*Estilização da tela de salas ----------------------------------------------------------------------------------*/
+.container {
+    width: 80%;
+    background-color: #AA0B0B;
+    padding: 0px;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.content {
+    display: flex;
+    gap: 20px;
+}
+
+.salas-section, .horarios-section {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    color: #333;
+}
+
+.salas-section {
+    flex: 1;
+}
+
+/*ESTILIZAÇÃO DO DROPDOWN "dia"*/
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-btn {
+    background-color: #007bff; /* Cor do botão */
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.dropdown-btn:hover {
+    background-color: #0056b3; /* Cor do botão ao passar o mouse */
+}
+
+/* Estilo para o conteúdo do dropdown */
+.dropdown-content {
+    display: none; /* Inicialmente escondido */
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    border-bottom: 1px solid #ddd;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Mostra o dropdown quando o botão é clicado */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+/*Fim do DROPDOWN krllllll*/
+
+.salas-btn {
+    width: 25%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #e30000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.salas-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sala {
+    background-color: #e0e0e0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.horarios-section {
+    width: 40%;
+}
+
+.dia-dropdown {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.dia-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.horarios-title {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.horarios-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.horario-btn {
+    padding: 10px;
+    font-size: 14px;
+    background-color: #e0e0e0;
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.horario-btn:hover {
+    background-color: #ccc;
+}   

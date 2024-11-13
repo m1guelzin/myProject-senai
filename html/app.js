@@ -5,7 +5,7 @@ document.getElementById("formulario-registro")
   
   //Adiciona o ouvinte de evento (submit) para capturar o envio do formulario
   .addEventListener("submit", function (event) {
-    //Previne o comportamento padrao do formulario, ou seja, impede que ele seja enviado e recarregue a pagona
+    //Previne o comportamento padrao do formulario, ou seja, impede que ele seja enviado e recarregue a pagina
     event.preventDefault();
 
     //Captura os valores dos campos do formularios
@@ -29,7 +29,7 @@ document.getElementById("formulario-registro")
       .then((response) => {
         //Tratamento da resposta do servidor / API
         if (response.ok) {
-          //verifica se a resposta foi bem sucedida (status 2xx(duzentos e alguma coisa))
+          //verifica se a resposta foi bem sucedida
           return response.json();
         }
         //Convertendo o erro em formato JSON
@@ -42,7 +42,6 @@ document.getElementById("formulario-registro")
         //executa a resposta de sucesso - retorna ao usuario final
 
         //Exibe um alerta para o usuario final (front) com o nome que acabou de ser cadastrado
-        //alert("Usuário cadastrado com sucesso!");
         alert(data.message);
         //Exibe o log no terminal
         console.log("Usuario criado: ", data.user);
