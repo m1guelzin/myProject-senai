@@ -7,25 +7,39 @@ module.exports = class salasController {
     const { nome_da_sala, capacidade, localizacao, disponibilidade, equipamentos } = req.body;
 
     if (!nome_da_sala || !capacidade || !localizacao || disponibilidade === undefined || !equipamentos) {
-      return res.status(400).json({ error: "Todos os campos obrigatórios devem ser preenchidos" });
+        return res.status(400).json({ error: "Todos os campos obrigatórios devem ser preenchidos" });
     }
 
+    const queryCheck = `SELECT * FROM salas WHERE nome_da_sala = ?`;
     const queryInsert = `INSERT INTO salas (nome_da_sala, capacidade, localizacao, disponibilidade, equipamentos) VALUES (?, ?, ?, ?, ?)`;
     const values = [nome_da_sala, capacidade, localizacao, disponibilidade, equipamentos];
 
     try {
-      connect.query(queryInsert, values, function (err) {
-        if (err) {
-          console.error(err);
-          return res.status(500).json({ error: "Erro ao cadastrar a sala" });
-        }
-        return res.status(201).json({ message: "Sala cadastrada com sucesso" });
-      });
+        // Verificar se já existe uma sala com o mesmo nome
+        connect.query(queryCheck, [nome_da_sala], function (err, results) {
+            if (err) {
+                console.error(err);
+                return res.status(500).json({ error: "Erro ao verificar o nome da sala" });
+            }
+
+            if (results.length > 0) {
+                return res.status(409).json({ error: "Já existe uma sala cadastrada com este nome" });
+            }
+
+            // Inserir a sala no banco de dados
+            connect.query(queryInsert, values, function (err) {
+                if (err) {
+                    console.error(err);
+                    return res.status(500).json({ error: "Erro ao cadastrar a sala" });
+                }
+                return res.status(201).json({ message: "Sala cadastrada com sucesso" });
+            });
+        });
     } catch (error) {
-      console.error(error);
-      return res.status(500).json({ error: "Erro interno do servidor" });
+        console.error(error);
+        return res.status(500).json({ error: "Erro interno do servidor" });
     }
-  }
+}
 
   // Listar todas as salas
   static async getAllSalas(req, res) {

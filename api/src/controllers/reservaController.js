@@ -4,30 +4,51 @@ module.exports = class reservaController {
   static async createReserva(req, res) {
     const { fkcpf, fkid_salas, data_hora, duracao } = req.body;
 
+    // Validações básicas
     if (!fkcpf || !fkid_salas || !data_hora || !duracao) {
-      return res
-        .status(400)
-        .json({ error: "Todos os campos devem ser preenchidos" });
+        return res.status(400).json({ error: "Todos os campos obrigatórios devem ser preenchidos" });
     }
 
-    const queryInsert = `
-      INSERT INTO reservas (fkcpf, fkid_salas, data_hora, duracao) 
-      VALUES ('${fkcpf}', '${fkid_salas}', '${data_hora}', '${duracao}')
+    // Conversão para Date e cálculo de horário de término
+    const inicio = new Date(data_hora);
+    const [duracaoHoras, duracaoMinutos, duracaoSegundos] = duracao.split(":").map(Number);
+    const duracaoMs = ((duracaoHoras * 60 + duracaoMinutos) * 60 + (duracaoSegundos || 0)) * 1000;
+    const fim = new Date(inicio.getTime() + duracaoMs);
+
+    const queryConflito = `
+        SELECT * FROM reservas 
+        WHERE fkid_salas = ? 
+        AND (
+            (data_hora <= ? AND DATE_ADD(data_hora, INTERVAL TIME_TO_SEC(duracao) SECOND) > ?) OR
+            (data_hora < ? AND DATE_ADD(data_hora, INTERVAL TIME_TO_SEC(duracao) SECOND) >= ?)
+        )
     `;
 
+    const valuesConflito = [fkid_salas, fim.toISOString(), inicio.toISOString(), fim.toISOString(), inicio.toISOString()];
+
+    const queryInsert = `
+        INSERT INTO reservas (fkcpf, fkid_salas, data_hora, duracao) 
+        VALUES (?, ?, ?, ?)
+    `;
+    const valuesInsert = [fkcpf, fkid_salas, inicio.toISOString(), duracao];
+
     try {
-      connect.query(queryInsert, function (err) {
-        if (err) {
-          console.error(err);
-          return res.status(500).json({ error: "Erro ao criar a reserva" });
+        // Verifica conflitos de horários
+        const [resultadosConflitos] = await connect.promise().query(queryConflito, valuesConflito);
+
+        if (resultadosConflitos.length > 0) {
+            return res.status(409).json({ error: "Conflito de horários para a sala selecionada" });
         }
-        return res.status(201).json({ message: "Reserva criada com sucesso" });
-      });
-    } catch (error) {
-      console.error(error);
-      return res.status(500).json({ error: "Erro interno do servidor" });
+
+        // Insere a reserva
+        await connect.promise().query(queryInsert, valuesInsert);
+
+        return res.status(201).json({ message: "Reserva criada com sucesso!" });
+    } catch (err) {
+        console.error("Erro ao criar reserva: ", err);
+        return res.status(500).json({ error: "Erro ao criar a reserva" });
     }
-  }
+}
 
   static async getAllReservas(req, res) {
     const query = `SELECT * FROM reservas`;
