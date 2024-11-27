@@ -373,22 +373,17 @@ footer {
 }
 
 .botao-perfil2{
-    right: 20px;
-    /*Alinha o botão, com 20 px de distância da borda direita da pagina*/
+    position:absolute;
+    right: 50px;
+    z-index: 1000;
     top: 15px;
-    /*Alinha obotão ao topo, com 20 px dedistância da borda superior*/
-    position: absolute;
-    /*Posiciona o botão de forma absoluta com relação ao cabeçalho*/
     background-color: rgba(255, 0, 0, 0.747);
     border: 1px solid rgb(0, 0, 0);
     color: rgb(255, 255, 255);
     padding: 10px 20px;
-    /*Define o espaço interno do botão em 10 px (vertical) e 20 px (horizontal)*/
     border-radius: 5px;
-    /*Arredonda os cantos do botão*/
     cursor: pointer;
-    /*Define o cursor como um ponteiro ao passar sobre o botão*/
-    transition: background-color 0.3s ease; /* Transição suave para o fundo */
+    transition: background-color 0.3s ease;
 }
 
 /*ESTILIZAÇÃO DA ABA DE PERFIL ---------------------------------------------------------------------------------------*/
@@ -439,7 +434,7 @@ header img{
 }
 
 html, body {
-    overflow: hidden;
+    overflow: auto;
     height: 100%;
   }
   
@@ -489,7 +484,7 @@ html, body {
   }
 
   html, body {
-    overflow: hidden;
+    overflow: auto;
     height: 100%;
 }
 
@@ -635,3 +630,69 @@ html, body {
 .horario-btn:hover {
     background-color: #ccc;
 }   
+
+/*ESTILIZAÇÃO DA LISTA DE SALASSSSSSSSSSSSSSSS*/
+
+.container_1 {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    overflow: auto; /* Evita que o conteúdo ultrapasse os limites */
+  }
+  
+  /* Estilo para o conteúdo principal */
+  .main_1 {
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  /* Estilo para o título das salas */
+  .salas_title_1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .salas_btn_1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #003f5f;
+  }
+  
+  /* Estilo para a seção das salas */
+  .salas_section_1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  /* Lista das salas */
+  .salas_list_1 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-evenly;
+    width: 100%;
+    overflow-y: auto; /* Permite rolar caso o conteúdo ocupe mais que o espaço */
+  }
+  
+  /* Cada item da sala */
+  .sala_1 {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    width: 250px;
+    box-sizing: border-box;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .sala_1 p {
+    margin: 10px 0;
+  }
+
+
+/*FIM DA ESTILIZAÇÃO DA LISTA DE SALASSSSSSSSSSSSSSSS*/
