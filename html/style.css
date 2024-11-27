@@ -379,9 +379,9 @@ header img{
 }
 
 .botao-sair{
-    right: 20px;
+    right: 105px;
     /*Alinha o botão, com 20 px de distância da borda direita da pagina*/
-    top: 15px;
+    top: 25px;
     /*Alinha obotão ao topo, com 20 px dedistância da borda superior*/
     position: absolute;
     /*Posiciona o botão de forma absoluta com relação ao cabeçalho*/
@@ -395,14 +395,11 @@ header img{
     cursor: pointer;
     /*Define o cursor como um ponteiro ao passar sobre o botão*/
     transition: background-color 0.3s ease; /* Transição suave para o fundo */
-    margin: 13px auto;
 }
 
 .botao-salas{
-    margin: 13px auto;
-    right: 150px;
     /*Alinha o botão, com 20 px de distância da borda direita da pagina*/
-    top: 15px;
+    top: 25px;
     /*Alinha obotão ao topo, com 20 px dedistância da borda superior*/
     position: absolute;
     /*Posiciona o botão de forma absoluta com relação ao cabeçalho*/
@@ -447,18 +444,18 @@ html, body {
 
   
   /* Estilização do formulário */
-  .perfil-form {
+  #perfil-form {
     display: flex;
     flex-direction: column;
   }
   
-  .perfil-form label {
+  #perfil-form label {
     font-size: 14px;
     margin-bottom: 5px;
     color: #333;
   }
   
-  .perfil-form input, .perfil-form select {
+  #perfil-form input, #perfil-form select {
     font-size: 16px;
     padding: 10px;
     margin-bottom: 15px;
@@ -467,7 +464,7 @@ html, body {
     background-color: #f7f7f7;
   }
   
-  .perfil-form input:focus, .perfil-form select:focus {
+  #perfil-form input:focus, #perfil-form select:focus {
     outline: none;
     border-color: #e63946;
   }
