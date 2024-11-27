@@ -113,8 +113,11 @@ module.exports = class userController {
         // Se o CPF e a senha estiverem corretos, login bem-sucedido
         return res.status(200).json({
           message: "Login bem-sucedido",
+          user: {
+          id_usuario: user.id_usuario,
           cpf: user.cpf,
           nome: user.nome,
+          },
         });
       });
     } catch (error) {
@@ -196,5 +199,83 @@ static async deleteUser(req, res) {
     return res.status(500).json({ error: "Erro interno do servidor" });
   }
 }
+
+static async getUserById(req, res) {
+  const userId = req.params.id;
+
+  if (!userId) {
+    return res.status(400).json({ error: "ID do usuário é obrigatório" });
+  }
+
+  const query = `SELECT * FROM usuario WHERE id_usuario = ?`; // Ajuste o campo `id` conforme o banco
+
+  connect.query(query, [userId], function (err, results) {
+    if (err) {
+      console.error("Erro ao buscar usuário:", err);
+      return res.status(500).json({ error: "Erro interno do servidor" });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).json({ error: "Usuário não encontrado" });
+    }
+
+    // Supondo que você tenha reservas relacionadas ao usuário
+    const user = results[0];
+    const queryReservas = `SELECT * FROM usuario WHERE id_usuario = ?`;
+
+    connect.query(queryReservas, [userId], function (err, reservas) {
+      if (err) {
+        console.error("Erro ao buscar reservas:", err);
+        return res.status(500).json({ error: "Erro interno ao buscar reservas" });
+      }
+
+      return res.status(200).json({
+        user: {
+          id: user.id_usuario,
+          nome: user.nome,
+          email: user.email,
+          telefone: user.telefone,
+          cpf: user.cpf
+        },
+      });
+    });
+  });
+}
+
+static async getUserReservations(req, res) {
+  const userId = req.params.id_usuario; // Obtendo o ID do usuário a partir da URL
+
+  // Consulta SQL para buscar as reservas do usuário
+  const query = `
+    SELECT r.id_reserva, s.nome_da_sala, r.data_hora, r.duracao
+    FROM reservas r
+    JOIN salas s ON r.fkid_salas = s.id_salas
+    WHERE r.fkid_usuario = ?
+  `;
+
+  try {
+    // Executando a consulta SQL
+    connect.query(query, [userId], (err, results) => {
+      if (err) {
+        console.error("Erro ao buscar reservas:", err);
+        return res.status(500).json({ error: "Erro ao buscar reservas" });
+      }
+
+      // Se não encontrar reservas, retornar uma lista vazia
+      if (results.length === 0) {
+        return res.status(200).json({ reservas: [] });
+      }
+
+      // Caso encontre reservas, retornar os dados encontrados
+      return res.status(200).json({ reservas: results });
+    });
+  } catch (error) {
+    console.error('Erro ao buscar reservas:', error);
+    return res.status(500).json({ error: 'Erro interno do servidor' });
+  }
+}
+
+
 };
+
 

@@ -22,7 +22,6 @@ body {
 /*Estilo do cabeçalho*/
 header {
     background-color: #D1C2C2;
-    ;
     /*Cor de fundo em hexadecimal*/
     padding: 20px;
     text-align: center;
@@ -246,10 +245,11 @@ footer {
     border-radius: 10px; /* Bordas arredondadas */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ao redor do bloco */
     max-width: 300px; /* Largura fixa do bloco */
-    height: 440px;
+    height: 420px;
     text-align: center; /* Alinha o texto ao centro */
     position: relative;
     margin: 15px auto;
+    top: -20px;
 }
 
 /* Estilos para o logotipo (caso fosse uma imagem) */
@@ -372,6 +372,25 @@ footer {
     transition: background-color 0.3s ease; /* Transição suave para o fundo */
 }
 
+.botao-perfil2{
+    right: 20px;
+    /*Alinha o botão, com 20 px de distância da borda direita da pagina*/
+    top: 15px;
+    /*Alinha obotão ao topo, com 20 px dedistância da borda superior*/
+    position: absolute;
+    /*Posiciona o botão de forma absoluta com relação ao cabeçalho*/
+    background-color: rgba(255, 0, 0, 0.747);
+    border: 1px solid rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    padding: 10px 20px;
+    /*Define o espaço interno do botão em 10 px (vertical) e 20 px (horizontal)*/
+    border-radius: 5px;
+    /*Arredonda os cantos do botão*/
+    cursor: pointer;
+    /*Define o cursor como um ponteiro ao passar sobre o botão*/
+    transition: background-color 0.3s ease; /* Transição suave para o fundo */
+}
+
 /*ESTILIZAÇÃO DA ABA DE PERFIL ---------------------------------------------------------------------------------------*/
 header img{
     max-width: 250px;
@@ -381,7 +400,7 @@ header img{
 .botao-sair{
     right: 105px;
     /*Alinha o botão, com 20 px de distância da borda direita da pagina*/
-    top: 25px;
+    top: 15px;
     /*Alinha obotão ao topo, com 20 px dedistância da borda superior*/
     position: absolute;
     /*Posiciona o botão de forma absoluta com relação ao cabeçalho*/
@@ -399,7 +418,7 @@ header img{
 
 .botao-salas{
     /*Alinha o botão, com 20 px de distância da borda direita da pagina*/
-    top: 25px;
+
     /*Alinha obotão ao topo, com 20 px dedistância da borda superior*/
     position: absolute;
     /*Posiciona o botão de forma absoluta com relação ao cabeçalho*/
@@ -501,8 +520,8 @@ html, body {
 
 /*ESTILIZAÇÃO DO DROPDOWN "dia"*/
 .dropdown {
-    position: relative;
-    display: inline-block;
+    position:relative;
+    display: flex;
 }
 
 .dropdown-btn {
