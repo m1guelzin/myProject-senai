@@ -47,3 +47,18 @@ function getAllSalas() {
       console.error("Erro: ", error.message);
     });
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Seleciona todos os elementos com a classe 'sala'
+  const salas = document.querySelectorAll('.sala');
+
+  // Adiciona o evento de clique para cada sala
+  salas.forEach(sala => {
+      sala.addEventListener('click', function() {
+          // Obtém o ID da sala clicada
+          const idSala = sala.getAttribute('data-id');
+          console.log(`Você clicou na sala com ID: ${idSala}`);
+          // Aqui, podemos adicionar a lógica para mostrar as informações da sala
+      });
+  });
+});

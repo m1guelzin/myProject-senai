@@ -62,24 +62,40 @@ module.exports = class salasController {
   // Atualizar uma sala
   static async updateSala(req, res) {
     const { id_salas, nome_da_sala, capacidade, localizacao, disponibilidade, equipamentos } = req.body;
-
+  
+    // Verificar campos obrigatórios
     if (!id_salas || !nome_da_sala || !capacidade || !localizacao || disponibilidade === undefined) {
       return res.status(400).json({ error: "Todos os campos obrigatórios devem ser preenchidos" });
     }
-
-    const queryUpdate = `UPDATE salas SET nome_da_sala=?, capacidade=?, localizacao=?, disponibilidade=?, equipamentos=? WHERE id_salas = ?`;
-    const values = [nome_da_sala, capacidade, localizacao, disponibilidade, equipamentos, id_salas];
-
+  
+    // Consulta para verificar se já existe outra sala com o mesmo nome
+    const checkQuery = `SELECT * FROM salas WHERE nome_da_sala = ? AND id_salas != ?`;
     try {
-      connect.query(queryUpdate, values, function (err, results) {
+      connect.query(checkQuery, [nome_da_sala, id_salas], (err, results) => {
         if (err) {
           console.error(err);
-          return res.status(500).json({ error: "Erro ao atualizar a sala" });
+          return res.status(500).json({ error: "Erro ao verificar nome da sala" });
         }
-        if (results.affectedRows === 0) {
-          return res.status(404).json({ message: "Sala não encontrada" });
+  
+        // Se encontrar um resultado, significa que o nome já existe
+        if (results.length > 0) {
+          return res.status(400).json({ error: "O nome da sala já está em uso" });
         }
-        return res.status(200).json({ message: "Sala atualizada com sucesso" });
+  
+        // Atualização da sala
+        const queryUpdate = `UPDATE salas SET nome_da_sala=?, capacidade=?, localizacao=?, disponibilidade=?, equipamentos=? WHERE id_salas = ?`;
+        const values = [nome_da_sala, capacidade, localizacao, disponibilidade, equipamentos, id_salas];
+  
+        connect.query(queryUpdate, values, function (err, results) {
+          if (err) {
+            console.error(err);
+            return res.status(500).json({ error: "Erro ao atualizar a sala" });
+          }
+          if (results.affectedRows === 0) {
+            return res.status(404).json({ message: "Sala não encontrada" });
+          }
+          return res.status(200).json({ message: "Sala atualizada com sucesso" });
+        });
       });
     } catch (error) {
       console.error(error);
@@ -90,18 +106,35 @@ module.exports = class salasController {
   // Excluir uma sala
   static async deleteSala(req, res) {
     const salaId = req.params.id;
+  
+    // Query para verificar se existem reservas associadas à sala
+    const queryCheckReservas = `SELECT COUNT(*) AS quantidade_reservas_na_sala FROM reservas WHERE fkid_salas = ?`;
     const queryDelete = `DELETE FROM salas WHERE id_salas = ?`;
-
+  
     try {
-      connect.query(queryDelete, [salaId], function (err, results) {
+      // Verifica se há reservas associadas à sala
+      connect.query(queryCheckReservas, [salaId], function (err, results) {
         if (err) {
           console.error(err);
-          return res.status(500).json({ error: "Erro ao excluir a sala" });
+          return res.status(500).json({ error: "Erro ao verificar reservas associadas à sala" });
         }
-        if (results.affectedRows === 0) {
-          return res.status(404).json({ error: "Sala não encontrada" });
+  
+        const { reservaCount } = results[0];
+        if (reservaCount > 0) {
+          return res.status(400).json({ error: "Não é possível excluir a sala, pois ela possui reservas associadas" });
         }
-        return res.status(200).json({ message: "Sala excluída com sucesso" });
+  
+        // Se não houver reservas, tenta excluir a sala
+        connect.query(queryDelete, [salaId], function (err, results) {
+          if (err) {
+            console.error(err);
+            return res.status(500).json({ error: "Erro ao excluir a sala" });
+          }
+          if (results.affectedRows === 0) {
+            return res.status(404).json({ error: "Sala não encontrada" });
+          }
+          return res.status(200).json({ message: "Sala excluída com sucesso" });
+        });
       });
     } catch (error) {
       console.error(error);
