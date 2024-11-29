@@ -186,19 +186,25 @@ static async deleteUser(req, res) {
   try {
     connect.query(queryDelete, values, function (err, results) {
       if (err) {
-        console.error(err);
+        if (err.code === 'ER_ROW_IS_REFERENCED_2') {
+          // Tratamento do erro de chave estrangeira
+          console.error('Erro de integridade referencial:', err);
+          return res.status(400).json({ error: "Impossível deletar conta. Reservas relacionadas." });
+        }
+        console.error('Erro ao deletar usuário:', err);
         return res.status(500).json({ error: "Erro interno no servidor" });
       }
       if (results.affectedRows === 0) {
         return res.status(404).json({ error: "Usuário não encontrado" });
       }
-      return res.status(200).json({ message: "Usuário excluido com sucesso" });
+      return res.status(200).json({ message: "Usuário excluído com sucesso" });
     });
   } catch (error) {
-    console.error(error);
+    console.error('Erro inesperado:', error);
     return res.status(500).json({ error: "Erro interno do servidor" });
   }
 }
+
 
 static async getUserById(req, res) {
   const userId = req.params.id;

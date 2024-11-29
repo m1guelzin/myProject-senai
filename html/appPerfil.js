@@ -1,5 +1,6 @@
+// Obtém o ID do usuário armazenado no localStorage
+const userId = localStorage.getItem('userId'); 
 document.addEventListener('DOMContentLoaded', () => {
-  const userId = localStorage.getItem('userId'); // Obtém o ID do usuário armazenado no localStorage
 
   if (userId) {
     // Fetch para obter os dados do usuário
@@ -76,4 +77,48 @@ function carregarReservasUsuario(userId) {
       alert("Erro ao buscar reservas. Tente novamente.");
     });
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  document.getElementById("botao-deletar-conta").addEventListener("click", function () {
+    // Exibe um modal de confirmação para o usuário
+    const confirmDelete = confirm("Tem certeza que deseja deletar sua conta? Esta ação não pode ser desfeita.");
+
+    if (!confirmDelete) return; // Se o usuário cancelar, encerra o processo
+    const userId = localStorage.getItem("userId"); // Exemplo de onde o ID pode estar armazenado
+
+    if (!userId) {
+      alert("Erro: ID do usuário não encontrado.");
+      return;
+    }
+
+    // Requisição HTTP para o endpoint de deletar usuário
+    fetch(`http://localhost:3000/project-senai/api/v1/user/${userId}`, {
+      method: "DELETE", // Método HTTP para deletar
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        // Convertendo o erro em formato JSON
+        return response.json().then((err) => {
+          throw new Error(err.error);
+        });
+      })
+      .then((data) => {
+        // Sucesso na exclusão
+        alert(data.message); 
+        console.log("Conta deletada: ", data);
+
+        window.location.href = "login.html";
+      })
+      .catch((error) => {
+        // Captura qualquer erro que ocorra durante o processo de requisição / resposta
+        alert("Erro ao deletar a conta: " + error.message);
+        console.error("Erro:", error.message);
+      });
+  });
+});
 

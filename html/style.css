@@ -440,7 +440,7 @@ html, body {
 .perfil-container {
     background-color: white;
     border-radius: 10px;
-    padding: 10px;
+    padding: 5px;
     max-width: 600px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     margin: auto;
@@ -462,14 +462,14 @@ html, body {
   }
   
   #perfil-form label {
-    font-size: 14px;
-    margin-bottom: 5px;
+    font-size: 10px;
+    margin-bottom: 2px;
     color: #333;
   }
   
   #perfil-form input, #perfil-form select {
-    font-size: 16px;
-    padding: 10px;
+    font-size: 12px;
+    padding: 5px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
