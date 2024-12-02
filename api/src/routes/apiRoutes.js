@@ -15,7 +15,6 @@ router.delete('/user/:id', userController.deleteUser);
 router.get('/user', userController.getAllUsers);
 router.put('/user', userController.updateUser);
 router.get('/user/:id', userController.getUserById);
-router.get('/user/:id_usuario/reservas', userController.getUserReservations);
 
 // Rotas Para reservaController
 router.post("/reservas", reservaController.createReserva);

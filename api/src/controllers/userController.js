@@ -248,39 +248,6 @@ static async getUserById(req, res) {
   });
 }
 
-static async getUserReservations(req, res) {
-  const userId = req.params.id_usuario; // Obtendo o ID do usuário a partir da URL
-
-  // Consulta SQL para buscar as reservas do usuário
-  const query = `
-    SELECT r.id_reserva, s.nome_da_sala, r.data_hora, r.duracao
-    FROM reservas r
-    JOIN salas s ON r.fkid_salas = s.id_salas
-    WHERE r.fkid_usuario = ?
-  `;
-
-  try {
-    // Executando a consulta SQL
-    connect.query(query, [userId], (err, results) => {
-      if (err) {
-        console.error("Erro ao buscar reservas:", err);
-        return res.status(500).json({ error: "Erro ao buscar reservas" });
-      }
-
-      // Se não encontrar reservas, retornar uma lista vazia
-      if (results.length === 0) {
-        return res.status(200).json({ reservas: [] });
-      }
-
-      // Caso encontre reservas, retornar os dados encontrados
-      return res.status(200).json({ reservas: results });
-    });
-  } catch (error) {
-    console.error('Erro ao buscar reservas:', error);
-    return res.status(500).json({ error: 'Erro interno do servidor' });
-  }
-}
-
 
 };
 

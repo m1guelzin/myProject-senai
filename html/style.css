@@ -124,7 +124,7 @@ footer {
     /*Alinha o texto do rodapé ao centro*/
     bottom: 0;
     /*Alinha o rodapé abaixo da pagina*/
-    position: absolute;
+    position: fixed;
     /*Posiciona o radapé de forma absoluta em relação ao body*/
     width: 100%;
     /*Define a largura ao rodapé como 100% da janela de vizualização*/
