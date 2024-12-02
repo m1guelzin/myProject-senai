@@ -4,7 +4,7 @@ function getAllSalas() {
   fetch("http://localhost:3000/project-senai/api/v1/salas", {
     method: "GET",
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "application/JSON",
     },
   })
     .then((response) => {
@@ -16,30 +16,31 @@ function getAllSalas() {
       });
     })
     .then((data) => {
-      const salasList = document.getElementById("salas-list");
-      salasList.innerHTML = ""; // Limpa a lista existente
-
-      // Itera sobre as salas e cria um item para cada uma
+      const salaLista = document.getElementById("salas-list");
+      // Limpa a lista antes de Adicionar novos itens
+      salaLista.innerHTML = "";
+      // Verifica se há usuario retornados e os adiciona a tabela
       data.salas.forEach((sala) => {
-        const salaDiv = document.createElement("div");
-        salaDiv.classList.add("sala");
+        // Cria uma nova linha
+        const tr = document.createElement("tr");
 
-        const nomeSala = document.createElement("p");
-        nomeSala.innerHTML = `<strong>Nome da Sala:</strong> ${sala.nome_da_sala}`;
+        const tdnome_da_sala= document.createElement("td");
+        tdnome_da_sala.textContent = sala.nome_da_sala ;
+        tr.appendChild(tdnome_da_sala);
+          
+        const tdcapacidade = document.createElement("td");
+        tdcapacidade.textContent = sala.capacidade;
+        tr.appendChild(tdcapacidade);
 
-        const capacidadeSala = document.createElement("p");
-        capacidadeSala.innerHTML = `<strong>Capacidade:</strong> ${sala.capacidade}`;
+        const tdlocalizacao= document.createElement("td");
+        tdlocalizacao.textContent = sala.localizacao;
+        tr.appendChild(tdlocalizacao);
 
-        const localizacaoSala = document.createElement("p");
-        localizacaoSala.innerHTML = `<strong>Localização:</strong> ${sala.localizacao}`;
+        const tdequipamentos = document.createElement("td");
+        tdequipamentos.textContent = sala.equipamentos;
+        tr.appendChild(tdequipamentos);
 
-        // Adiciona as informações da sala à div
-        salaDiv.appendChild(nomeSala);
-        salaDiv.appendChild(capacidadeSala);
-        salaDiv.appendChild(localizacaoSala);
-
-        // Adiciona a div da sala à lista
-        salasList.appendChild(salaDiv);
+        salaLista.appendChild(tr);
       });
     })
     .catch((error) => {

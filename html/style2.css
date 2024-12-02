@@ -1,143 +1,90 @@
-/* Resetando margens e padding */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #AA0B0B;;
-    color: #333;
-    line-height: 1.6;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Garante que a altura mínima da página seja 100% da tela */
-  }
-  
-  /* Header */
-  header {
-    background-color: #D1C2C2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    height: 100%;
+     /* Estilos aplicados aos elementos globais */
+     body {
+      height: 100%;
+      margin: 0;
+    }
+
+    /* Estilo do cabeçalho */
+    header {
+      background-color: #d1c2c2; /* Cor de fundo */
+      padding: 20px; /* Espaçamento interno */
+      text-align: center; /* Centraliza o texto */
+      color: rgb(0, 0, 0); /* Cor do texto */
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #aa0b0b;
+      color: aliceblue;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh; /* Garante que o body ocupe toda a altura da tela */
   }
 
-  .botao-perfil2 {
-    position: absolute;
-    right: 50px;
-    top: 15px;
-    background-color: #FF3D00; /* Strong red color */
-    border: none; /* Removing the border */
-    color: white;
-    font-size: 18px; /* Adjust font size for a clearer text */
-    padding: 12px 30px; /* Adjust padding for a better fit */
-    border-radius: 12px; /* Rounded corners */
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+    /* Estilo do botão de perfil */
+    .botao-perfil {
+      right: 70px; /* Alinha o botão 100px da borda direita */
+      top: 15px; /* Alinha o botão 15px da borda superior */
+      position: absolute; /* Posicionamento absoluto */
+      background-color: rgba(255, 0, 0, 0.747); /* Cor de fundo do botão */
+      border: 1px solid rgb(0, 0, 0); /* Borda preta */
+      color: rgb(255, 255, 255); /* Cor do texto */
+      padding: 10px 20px; /* Espaçamento interno do botão */
+      border-radius: 5px; /* Arredonda os cantos do botão */
+      cursor: pointer; /* Cursor de ponteiro ao passar sobre o botão */
+      transition: background-color 0.3s ease; /* Transição suave de cor de fundo */
+    }
 
-.botao-perfil2:hover {
-    background-color: #978787;
-
-}
-
-  header img {
-    height: 50px;
+    /* Efeito ao passar o mouse sobre o botão */
+    .botao-perfil:hover {
+      background-color: #978787; /* Altera a cor ao passar o mouse */
+    }
+   
+    main{
+      flex: 1;
+    }
+    
+    header img {
+      max-width: 250px;
+      height: 50px;
+    }
+    /* Estilo do rodapé */
+    footer {
+      font-size: 16px;
+      background-color: #d1c2c2;
+      color: rgb(0, 0, 0);
+      padding: 1px; /* Ajusta o espaçamento interno do footer */
+      text-align: center;
+      width: 100%;
   }
-  
-  .botao-perfil2 {
-    background-color: #ff1a1a;
-    color: white;
-    padding: 10px 20px;
-    border: 1px solid rgb(0, 0, 0);
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s;
-  }
-  
-  .botao-perfil2:hover {
-    background-color: #978787;
-  }
+    
+    /* Estilo da tabela de salas */
+    table {
+      width: 70%; /* Largura total da tabela */
+      border-collapse: collapse; /* Remove espaços entre bordas */
+      margin-top: 20px; /* Espaçamento superior */
+      margin: 25px auto;
+      
+    }
 
+    th, td {
+      border: 1px solid #ddd; /* Borda cinza clara */
+      padding: 8px; /* Espaçamento interno */
+      text-align: left; /* Alinhamento à esquerda */
+    }
 
-.main_1 {
-    display: flex;
-    justify-content:center;
-    width: 80%;
-    margin: 10px 0px
-}
+    th {
+      background-color:  #d1c2c2; /* Cor de fundo para cabeçalho */
+      color: rgb(0, 0, 0); /* Cor do texto no cabeçalho */
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
 
-.sala {
-    background-color: #e2e2e2;
-    padding: 10px;
-    width: calc(25% - 10px); /* Isso garante até 4 salas por linha */
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: center;
-    box-sizing: border-box;
-}
+    tr:nth-child(even) {
+      background-color: white;/* Cor de fundo para linhas pares */
+      color:black
+    }
 
-.sala:hover {
-    background-color: #ddd;
-}
-
-.right-section {
-    width: 40%;
-}
-
-.salas_title_1 {
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
-    background-color: rgba(255, 0, 0, 0.836);
-    padding: 10px;
-    border-radius: 5px;
-    width: 25%;
-    margin: 15px 15px;
-}
-
-/* Estilo para o contêiner das salas */
-.salas_list_1 {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    width: 60%; /* Ocupa 60% da largura da tela */
-    margin-right: 20px;
-    padding: 10px;
-    border-radius: 5px;
-    margin: 0px 15px;
-}
-
-/* Contêiner geral que ocupa toda a largura disponível */
-.container_1 {
-    display: flex;
-    justify-content: flex-start; /* Alinha o conteúdo à esquerda */
-}
-
-/* A seção à direita (pode ser expandida mais tarde) */
-.right-section {
-    width: 40%; /* 40% da largura para a seção à direita */
-    padding: 10px;
-}
-
-/* Estilo do calendário */
-
-  
-  footer {
-    background-color: #D1C2C2;
-    color: black;
-    text-align: center;
-    padding: 15px;
-    width: 100%;
-    font-size: 16px;
-    position: relative;
-    bottom: 0;
-    margin-top: auto; /* Garante que o footer fique no final da página */
-  }
-
-  
+    tr:hover {
+      background-color: #978787; /* Cor de fundo ao passar o mouse */
+    }

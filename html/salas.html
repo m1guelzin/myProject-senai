@@ -1,34 +1,44 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Reserva de Salas - SENAI</title>
-    <link rel="stylesheet" href="style2.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style2.css" />
+  </head>
+  <body>
     <header>
-        <button onclick="window.location.href='perfil.html'" class="botao-perfil2">Perfil</button>
-        <img src="senaisplogo.png" alt="Logo SENAI SP" />
+      <img src="senaisplogo.png" alt="Logo SENAI SP" />
+      <button onclick="window.location.href='perfil.html'" class="botao-perfil">
+        Perfil
+      </button>
     </header>
-    <p class="salas_title_1">SALAS DA INSTITUIÇÃO</p>
-    <div class="container_1">
-        <main class="main_1">
-            <div class="content_1">
-                <div class="salas_section_1">
-                    <!-- Seção com 60% da página para as salas listadas -->
-                    <div class="salas_list_1" id="salas-list">
-                        <!-- As salas serão listadas aqui -->
-                    </div>
-                </div>
-                <!-- Adicione uma nova seção à direita, se precisar -->
-            </div>
-        </main>
-    </div>
-    <footer>
-        <p>SENAI Franca-SP</p>
-    </footer>
 
+    <main>
+      <section>
+        
+        <table id="salas-table">
+          <thead>
+            <th>Nome da sala</th>
+            <th>Capacidade</th>
+            <th>Localizaçao</th>
+            <th>Equipamentos</th>
+          </thead>
+          <tbody id="salas-list">
+            <!-- as salas serão adicionados aqui -->
+            
+           
+            
+
+        
+          </tbody>
+        </table>
+      </section>     
+    </main>
+    
+    <footer>
+      <p>SENAI Franca-SP</p>
+    </footer>
     <script src="appSalas.js"></script>
-</body>
+  </body>
 </html>
